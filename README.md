@@ -1,57 +1,44 @@
-# Sample Hardhat 3 Beta Project (`node:test` and `viem`)
+## Описание проекта 
+ 
+мини hardhat проект для написания и тестирования трех смартконтрактов 
 
-This project showcases a Hardhat 3 Beta project using the native Node.js test runner (`node:test`) and the `viem` library for Ethereum interactions.
+Для тестирования используем Typescript библиотеки а также тестируем на Solidity
 
-To learn more about the Hardhat 3 Beta, please visit the [Getting Started guide](https://hardhat.org/docs/getting-started#getting-started-with-hardhat-3). To share your feedback, join our [Hardhat 3 Beta](https://hardhat.org/hardhat3-beta-telegram-group) Telegram group or [open an issue](https://github.com/NomicFoundation/hardhat/issues/new) in our GitHub issue tracker.
+В каждом смарт контракте использованы разные хранилище данных
+   - написание и чтение данных обычных переменных 
+   - написание и чтение данных массива
+   - написание и чтение данных mapping 
 
-## Project Overview
+   Разница между ними:
+     в обычное переменное только можно записать и хранить только одно значение одного типа.
+     в массиве можно записать и хранить множество элементоа одного типа.
+     в mapping можно хранить пары ключ со значением, ключи и значения могут быть разных типов.
 
-This example project includes:
+     массив используем когда хотим работать с множеством элементов одного типа
+     mapping лучше использовать если работаем с элементами и хотим записать и читать значения по ключу
 
-- A simple Hardhat configuration file.
-- Foundry-compatible Solidity unit tests.
-- TypeScript integration tests using [`node:test`](nodejs.org/api/test.html), the new Node.js native test runner, and [`viem`](https://viem.sh/).
-- Examples demonstrating how to connect to different types of networks, including locally simulating OP mainnet.
 
-## Usage
+## Установака
 
-### Running Tests
+Инструкция по запуску:
 
-To run all the tests in the project, execute the following command:
+  npm init -y 
 
-```shell
-npx hardhat test
-```
+  npm install --save-dev hardhat
 
-You can also selectively run the Solidity or `node:test` tests:
+  npx hardhat --init
 
-```shell
-npx hardhat test solidity
-npx hardhat test nodejs
-```
+  npx hardhat compile
 
-### Make a deployment to Sepolia
+  npx hardhat build
 
-This project includes an example Ignition module to deploy the contract. You can deploy this module to a locally simulated chain or to Sepolia.
+  npx hardhat test 
 
-To run the deployment to a local chain:
+  npx hardhat test solidity
 
-```shell
-npx hardhat ignition deploy ignition/modules/Counter.ts
-```
 
-To run the deployment to Sepolia, you need an account with funds to send the transaction. The provided Hardhat configuration includes a Configuration Variable called `SEPOLIA_PRIVATE_KEY`, which you can use to set the private key of the account you want to use.
+## Использование
 
-You can set the `SEPOLIA_PRIVATE_KEY` variable using the `hardhat-keystore` plugin or by setting it as an environment variable.
 
-To set the `SEPOLIA_PRIVATE_KEY` config variable using `hardhat-keystore`:
+ 
 
-```shell
-npx hardhat keystore set SEPOLIA_PRIVATE_KEY
-```
-
-After setting the variable, you can run the deployment with the Sepolia network:
-
-```shell
-npx hardhat ignition deploy --network sepolia ignition/modules/Counter.ts
-```
